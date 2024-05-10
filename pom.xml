@@ -61,9 +61,9 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>ru.sudo.sudokusolver/ru.sudo.sudokusolver.SudokuApplication</mainClass>
-                            <launcher>app</launcher>
-                            <jlinkZipName>app</jlinkZipName>
-                            <jlinkImageName>app</jlinkImageName>
+                            <launcher>sudokusolver</launcher>
+                            <jlinkZipName>sudokusolver</jlinkZipName>
+                            <jlinkImageName>sudokusolver</jlinkImageName>
                             <noManPages>true</noManPages>
                             <stripDebug>true</stripDebug>
                             <noHeaderFiles>true</noHeaderFiles>
