@@ -3,6 +3,7 @@ package ru.sudo.sudokusolver.guiEventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import ru.sudo.sudokusolver.algorithm.SolutionBacktracking;
 import ru.sudo.sudokusolver.util.ArrayUtils;
@@ -19,6 +20,9 @@ public class ProcessController {
         GridPane buttonsPane = new GridPane();
         Button solveButton = createProceedButton(tfArr);
         Button resetButton = createResetButton(tfArr);
+
+        buttonsPane.setHgap(10);
+
         GridPane.setColumnIndex(solveButton, 0);
         GridPane.setColumnIndex(resetButton, 1);
         buttonsPane.getChildren().add(solveButton);

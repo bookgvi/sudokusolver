@@ -2,12 +2,14 @@ package ru.sudo.sudokusolver.guiEventHandler;
 
 import javafx.fxml.FXML;
 import javafx.geometry.HPos;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
@@ -27,6 +29,9 @@ public class BoardController {
         for (int y = 0; y < size; y++) {
             for (int x = 0; x < size; x++) {
 
+                GridPane tfGridPane = new GridPane();
+                tfGridPane.setPadding(new Insets(3,2,2,3));
+
                 // Create a new TextField in each Iteration
                 TextField tf = new TextField();
                 tf.setPrefHeight(50);
@@ -37,21 +42,21 @@ public class BoardController {
                 tf.setFont(Font.font("Verdana", 14));
                 tf.setFocusTraversable(false);
 
+                // persist values for further manipulations with data
                 tfArr[y][x] = tf;
 
-                // Iterate the Index using the loops
-                GridPane.setRowIndex(tf, y);
-                GridPane.setColumnIndex(tf, x);
-                board.getChildren().add(tf);
-                if (x > 0 && x % 3 == 0) {
+                tfGridPane.getChildren().add(tf);
+                board.add(tfGridPane, x, y);
+
+                if (x % 3 == 0 || x == size - 1) {
                     int tx = x == size - 1 ? x + 1 : x;
-                    Line vLine = new Line(tx, 0, tx, 50);
+                    Line vLine = new Line(tx, 0, tx, 53);
                     vLine.setStyle("-fx-stroke-width: 2px");
                     board.add(vLine, tx, y);
                 }
-                if (y > 0 && y % 3 == 0) {
+                if (y % 3 == 0 || y == size - 1) {
                     int ty = y == size - 1 ? y + 1 : y;
-                    Line hLine = new Line(0, ty - 150, 50, ty - 150);
+                    Line hLine = new Line(0, ty - 150, 53, ty - 150);
                     hLine.setStyle("-fx-stroke-width: 2px");
                     GridPane.setValignment(hLine, VPos.TOP);
                     board.add(hLine, x, ty);

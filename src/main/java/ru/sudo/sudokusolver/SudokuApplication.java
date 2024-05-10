@@ -17,7 +17,6 @@ public class SudokuApplication extends Application {
     public void start(Stage stage) throws IOException {
 //        FXMLLoader fxmlLoader = new FXMLLoader(SudokuApplication.class.getResource("board-view.fxml"));
         final int SIZE = 9;
-        Scene scene = null;
 
         TextField[][] tfArr = new TextField[SIZE][SIZE];
         GridPane board = BoardController.createBoard(tfArr);
@@ -28,7 +27,7 @@ public class SudokuApplication extends Application {
         vbox.setSpacing(20.0);
         vbox.setPadding(insets);
 
-        scene = new Scene(vbox);
+        Scene scene = new Scene(vbox);
         stage.setTitle("Sudoku!");
         stage.setScene(scene);
         stage.show();
