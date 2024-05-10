@@ -30,17 +30,10 @@ public class BoardController {
             for (int x = 0; x < size; x++) {
 
                 GridPane tfGridPane = new GridPane();
-                tfGridPane.setPadding(new Insets(3,2,2,3));
+                tfGridPane.setPadding(new Insets(3, 2, 2, 3));
 
                 // Create a new TextField in each Iteration
-                TextField tf = new TextField();
-                tf.setPrefHeight(50);
-                tf.setPrefWidth(50);
-                tf.setAlignment(Pos.CENTER);
-                tf.setEditable(true);
-                tf.setText("");
-                tf.setFont(Font.font("Verdana", 14));
-                tf.setFocusTraversable(false);
+                TextField tf = createTextField();
 
                 // persist values for further manipulations with data
                 tfArr[y][x] = tf;
@@ -66,4 +59,22 @@ public class BoardController {
         return board;
     }
 
+    private static TextField createTextField() {
+        TextField tf = new TextField();
+        tf.setPrefHeight(50);
+        tf.setPrefWidth(50);
+        tf.setAlignment(Pos.CENTER);
+        tf.setEditable(true);
+        tf.setText("");
+        tf.setFont(Font.font("Verdana", 14));
+        tf.setFocusTraversable(false);
+
+        tf.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.isEmpty() && (!newValue.matches("\\d?") || Integer.parseInt(newValue) == 0)) {
+                String val = !oldValue.isEmpty() && oldValue.matches("\\d?") && Integer.parseInt(oldValue) != 0 ? oldValue : "";
+                tf.setText(val);
+            }
+        });
+        return tf;
+    }
 }
