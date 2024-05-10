@@ -3,10 +3,20 @@ package ru.sudo.sudokusolver.algorithm;
 import java.util.Arrays;
 
 public class SolutionBacktracking {
+    private static final SolutionBacktracking INSTANCE = new SolutionBacktracking();
+
     private int ROW;
     private int COL;
     char[][] cloneBoard;
     boolean isFinish = false;
+
+    private SolutionBacktracking() {
+        // empty constructor
+    }
+
+    public static SolutionBacktracking getInstance() {
+        return new SolutionBacktracking();
+    }
 
     public void solveSudoku(char[][] board) {
         ROW = board.length;
